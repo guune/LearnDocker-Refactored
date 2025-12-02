@@ -3,8 +3,22 @@ import './index.css';
 import App from './App.tsx';
 import { BrowserRouter } from 'react-router-dom';
 
-createRoot(document.getElementById('root')!).render(
-    <BrowserRouter>
-        <App />
-    </BrowserRouter>
-);
+async function enableMocking() {
+    if (!import.meta.env.DEV) {
+        return;
+    }
+
+    const { worker } = await import('./mocks/browser');
+
+    return worker.start({
+        onUnhandledRequest: 'error',
+    });
+}
+
+enableMocking().then(() => {
+    createRoot(document.getElementById('root')!).render(
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    );
+});
