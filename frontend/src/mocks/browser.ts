@@ -1,4 +1,5 @@
 import { setupWorker } from 'msw/browser';
-import { handlers } from './handlers';
+import { sandboxHandlers } from './handler/sandbox';
+import { quizHandlers } from './handler/quiz';
 
-export const worker = setupWorker(...handlers);
+export const worker = setupWorker(...sandboxHandlers, ...quizHandlers);
