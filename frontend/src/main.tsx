@@ -4,14 +4,21 @@ import App from './App.tsx';
 import { BrowserRouter } from 'react-router-dom';
 
 async function enableMocking() {
-    if (!import.meta.env.DEV) {
+    if (!import.meta.env.VITE_API_MOCKING) {
         return;
     }
 
     const { worker } = await import('./mocks/browser');
 
     return worker.start({
-        onUnhandledRequest: 'error',
+        onUnhandledRequest(request, print) {
+            if (request.url.includes('/api')) {
+                print.error();
+                return;
+            }
+
+            return;
+        },
     });
 }
 
