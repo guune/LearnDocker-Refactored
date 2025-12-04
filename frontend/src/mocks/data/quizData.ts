@@ -12,4 +12,125 @@ export const QUIZ_DATA = [
   <li>특정 레지스트리에서 이미지를 가져올 때는 이미지명 앞에 <레지스트리 주소/>를 붙여주세요.</li>
 </ul>`,
   },
+  {
+    id: 2,
+    title: 'Docker Image 목록 확인하기',
+    content:
+      '로컬 시스템에 저장된 Docker 이미지들을 확인해볼까요?\n\n' +
+      '1. docker images 명령어를 사용하여 현재 시스템에 있는 모든 Docker 이미지를 조회하세요.\n' +
+      '2. 명령어 실행 후 출력된 결과에서 learndocker.io/hello-world 이미지 ID를 앞 4자리 이상 입력하세요.\n' +
+      '3. 답안란은 페이지 우측 하단에 있습니다.\n',
+    hint: `<ul class="list-disc list-inside">
+  <li>이미지 목록을 확인하는 명령어는 별도의 인자가 필요하지 않습니다.</li>
+</ul>
+                `,
+  },
+  {
+    id: 3,
+    title: 'Docker Image 삭제하기',
+    content:
+      '더 이상 필요하지 않은 Docker 이미지를 삭제하는 방법을 알아봅시다.\n\n' +
+      '1. docker rmi 명령어를 사용하여 learndocker.io/hello-world 이미지를 삭제하세요.\n' +
+      '2. 삭제 후 docker images 명령어로 이미지가 정상적으로 삭제되었는지 확인하세요.\n',
+    hint: `<ul class="list-disc list-inside">
+  <li>docker rmi <learndocker.io/이미지명 | IMAGE ID> 형식으로 명령어를 작성하세요.</li>
+</ul>
+                `,
+  },
+  {
+    id: 4,
+    title: 'Container 생성하기',
+    content:
+      'Docker 이미지를 기반으로 컨테이너를 생성해봅시다.\n\n' +
+      '1. docker create 명령어를 사용하여 learndocker.io/hello-world 이미지로부터 컨테이너를 생성하세요.\n',
+    hint: `<ul class="list-disc list-inside">
+  <li>docker create <learndocker.io/이미지명> 형식으로 명령어를 작성하세요.</li>
+</ul>
+                `,
+  },
+  {
+    id: 5,
+    title: 'Container 실행하기',
+    content:
+      '생성된 컨테이너를 실행해보겠습니다.\n\n' +
+      '1. docker start 명령어를 사용하여 이전 단계에서 생성한 컨테이너를 실행하세요.\n' +
+      '2. 단 attach 모드로 실행해야 합니다.\n' +
+      '3. 컨테이너 ID나 이름을 사용하여 실행할 수 있습니다.\n' +
+      '4. 실행 후 터미널에 표시되는 "Answer: " 다음에 나오는 값을 입력해주세요.\n' +
+      '5. 답안란은 페이지 우측 하단에 있습니다.\n',
+    hint: `<ul class="list-disc list-inside">
+  <li>docker start -a <컨테이너ID> 형식으로 명령어를 작성하세요.</li>
+  <li>docker ps -a 명령어로 모든 컨테이너를 확인할 수 있습니다.</li>
+  <li>컨테이너ID 전부 적을 필요는 없습니다.</li>
+</ul>
+                `,
+  },
+  {
+    id: 6,
+    title: 'Container 생성 및 실행하기',
+    content:
+      '컨테이너의 생성과 실행을 한 번에 수행해봅시다.\n\n' +
+      '1. docker run 명령어를 사용하여 learndocker.io/joke 이미지로 컨테이너를 생성하고 실행하세요.\n' +
+      '2. 단 detach 모드로 실행해야 합니다.\n' +
+      '3. 이 명령어는 create와 start를 연속으로 실행하는 것과 같은 효과입니다.\n',
+    hint: `<ul class="list-disc list-inside">
+  <li>docker run --detach <이미지명 | IMAGE ID> 형식으로 명령어를 작성하세요.</li>
+</ul>
+                `,
+  },
+  {
+    id: 7,
+    title: 'Container 로그 확인하기',
+    content:
+      'detach로 실행 된 container 로그를 확인해보겠습니다.\n\n' +
+      '1. docker ps -a 명령어를 사용하여 모든 컨테이너 목록을 확인하세요.\n' +
+      '2. learndocker.io/joke 컨테이너의 로그를 확인하세요\n' +
+      '3. 실행 후 터미널에 표시되는 문제를 보고, 띄어쓰기 없이 한글로 답을 입력해주세요.\n' +
+      '4. 답안란은 페이지 우측 하단에 있습니다.\n',
+    hint: `<ul class="list-disc list-inside">
+  <li>docker logs <CONTAINER ID | NAMES>을 사용하세요.</li>
+</ul>
+                `,
+  },
+  {
+    id: 8,
+    title: 'Container 목록 확인하기',
+    content:
+      '실행 중이거나 중지된 모든 컨테이너를 확인해봅시다.\n\n' +
+      '1. docker ps -a 명령어를 사용하여 모든 컨테이너 목록을 확인하세요.\n' +
+      '2. joke 이미지로 만든 컨테이너의 ID 최소 앞 4자리를 입력하세요.\n' +
+      '3. 답안란은 페이지 우측 하단에 있습니다.\n',
+    hint: `<ul class="list-disc list-inside">
+  <li>docker ps -a 명령어로 모든 컨테이너를 확인할 수 있습니다.</li>
+</ul>
+                `,
+  },
+  {
+    id: 9,
+    title: 'Container 중지하기',
+    content:
+      '실행 중인 컨테이너를 중지해보겠습니다.\n\n' +
+      '1. docker stop 명령어를 사용하여 실행 중인 모든 컨테이너를 중지하세요.\n' +
+      '2. 컨테이너가 중지되면 상태가 Exited로 변경됩니다.\n',
+    hint: `<ul class="list-disc list-inside">
+  <li>docker stop <컨테이너ID> 형식으로 명령어를 작성하세요.</li>
+  <li>컨테이너ID 전부 적을 필요는 없습니다.</li>
+</ul>
+                `,
+  },
+  {
+    id: 10,
+    title: 'Container 삭제하기',
+    content:
+      '더 이상 필요하지 않은 컨테이너를 삭제해봅시다.\n\n' +
+      '1. docker rm 명령어를 사용하여 모든 컨테이너를 삭제하세요.\n' +
+      '2. 컨테이너가 실행 중인 경우 먼저 중지한 후 삭제해야 합니다.\n' +
+      '3. 삭제 후 docker ps -a로 확인해보세요.\n',
+    hint: `<ul class="list-disc list-inside">
+  <li>docker rm <컨테이너ID> 형식으로 명령어를 작성하세요.</li>
+  <li>컨테이너ID 전부 적을 필요는 없습니다.</li>
+</ul>
+                `,
+  },
+
 ]
