@@ -6,6 +6,7 @@ export const quizHandlers = [
   http.get("/api/quiz/:id", ({ params }) => {
     const quizId = Number(params.id);
     const quiz = QUIZ_DATA.find(q => q.id === quizId);
+    mockDindState.setCurrentWorkingQuiz(quizId);
 
     if (!quiz) {
       return new HttpResponse(null, { status: 404 });
@@ -33,7 +34,7 @@ export const quizHandlers = [
     }
 
     // 그 외의 경우 (검사 대상이 아니거나, 대상인데 답변이 있는 경우) 통과
-    mockDindState.completeQuiz(quizId);
+    mockDindState.submitQuiz(quizId);
     return HttpResponse.json({ quizResult: 'SUCCESS' });
   })
 

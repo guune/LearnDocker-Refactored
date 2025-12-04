@@ -2,7 +2,8 @@ import { VISUALIZATION_SEQUENCE, StateSnapshot } from "../data/visualizationSequ
 import { Visualization } from "../../types/visualization";
 
 class MockDindState {
-  #completedQuizNumber = 0;
+  #completedQuizNumber = 0; // 시각화용 (명령어 실행시 증가)
+  #level = 1; // 접근 제어용 (submit 성공사 증가)
   #currentWorkingQuiz = 1; //Quiz 페이지 진입시 설정
   #hasExecutedCommand = false; // 현재 퀴즈에서 명령어 실행 여부
 
@@ -42,14 +43,15 @@ class MockDindState {
     return;
   }
 
-  completeQuiz(quizNumber: number): void {
-    if (quizNumber >= 1 && quizNumber <= 10) {
-      this.#completedQuizNumber = Math.max(this.#completedQuizNumber, quizNumber);
+  submitQuiz(quizNumber: number): void {
+
+    if (this.#level === quizNumber) {
+      this.#level = quizNumber + 1;
     }
   }
 
   canAccessQuiz(quizNumber: number): boolean {
-    return quizNumber <= this.#completedQuizNumber + 1;
+    return quizNumber <= this.#level;
   }
 
   getCompletedQuizNumber(): number {
@@ -60,6 +62,7 @@ class MockDindState {
     this.#completedQuizNumber = 0;
     this.#currentWorkingQuiz = 1;
     this.#hasExecutedCommand = false;
+    this.#level = 1;
   }
 }
 

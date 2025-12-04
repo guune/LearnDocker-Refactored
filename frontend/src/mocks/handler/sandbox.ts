@@ -1,4 +1,4 @@
-import { http, HttpResponse } from 'msw';
+import { delay, http, HttpResponse } from 'msw';
 import { mockDindState } from '../state/MockDindState';
 import { COMMAND_OUTPUTS } from '../data/commandData';
 
@@ -23,8 +23,9 @@ export const sandboxHandlers = [
     return new HttpResponse(null, { status: 200 })
   }),
 
-  http.get("/api/sandbox/elements", () => {
-    return HttpResponse.json(mockDindState.getVisualizationData());
+  http.get("/api/sandbox/elements", async () => {
+    await delay(500);
+    return HttpResponse.json(mockDindState.getCurrentState());
   }),
 
   http.get('/api/sandbox/hostStatus', () => {
@@ -32,9 +33,10 @@ export const sandboxHandlers = [
   }),
 
   http.post("/api/sandbox/command", () => {
-    mockDindState.executeCommand();
     const completedQuiz = mockDindState.getCompletedQuizNumber();
-    const output = COMMAND_OUTPUTS[completedQuiz]
+    const output = COMMAND_OUTPUTS[completedQuiz] || "Success\r\n";
+
+    mockDindState.executeCommand();
 
     return HttpResponse.text(output)
   }),
